@@ -24,7 +24,7 @@ A frontend-only patient registration application built with React and PGlite for
 
 ```bash
 git clone <repository-url>
-cd patient-registration
+cd medblocks
 ```
 
 2. Install dependencies:
@@ -82,50 +82,7 @@ npm start
 - When you register a patient in one tab, all other tabs will update automatically
 - Data persists even after closing and reopening the browser
 
-## Development Challenges and Solutions
 
-1. **Data Persistence**
-
-   - Challenge: Ensuring data survives page refreshes
-   - Solution: Using PGlite with IndexedDB backend for persistent storage
-
-2. **Cross-tab Synchronization**
-
-   - Challenge: Keeping data in sync across multiple tabs
-   - Solution: Implemented BroadcastChannel API for real-time updates
-
-3. **SQL Query Safety**
-
-   - Challenge: Preventing SQL injection in raw queries
-   - Solution: PGlite provides built-in parameterized query support
-
-4. **UI/UX**
-   - Challenge: Creating an intuitive interface for both registration and SQL queries
-   - Solution: Implemented a clean, responsive design with clear sections
-
-## Deployment
-
-The application can be deployed to any static hosting service. For example, using Vercel:
-
-1. Install Vercel CLI:
-
-```bash
-npm install -g vercel
-```
-
-2. Deploy:
-
-```bash
-vercel
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## License
 
