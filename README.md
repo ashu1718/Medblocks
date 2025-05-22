@@ -1,3 +1,6 @@
+# Netlify Deployed Link-
+https://hospital-patient-registration.netlify.app/
+
 # Patient Registration App
 
 A frontend-only patient registration application built with React and PGlite for data storage. This application demonstrates how to build a persistent, multi-tab synchronized database application using only frontend technologies.
