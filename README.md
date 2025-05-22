@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+# Patient Registration App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A frontend-only patient registration application built with React and PGlite for data storage. This application demonstrates how to build a persistent, multi-tab synchronized database application using only frontend technologies.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Register new patients with name, date of birth, gender, and contact information
+- View all registered patients in a sortable table
+- Run raw SQL queries against the patient database
+- Data persistence across page refreshes
+- Real-time synchronization across multiple browser tabs
+- Modern, responsive UI
 
-### `npm start`
+## Technical Details
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Built with React and PGlite (a SQLite-compatible database that runs in the browser)
+- Uses BroadcastChannel API for cross-tab communication
+- Data is stored in IndexedDB for persistence
+- No backend required - everything runs in the browser
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup Instructions
 
-### `npm test`
+1. Clone the repository:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone <repository-url>
+cd patient-registration
+```
 
-### `npm run build`
+2. Install dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Start the development server:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start
+```
 
-### `npm run eject`
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Usage
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Registering a Patient
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Fill out the registration form with:
+   - Full Name
+   - Date of Birth
+   - Gender (Male/Female/Other)
+   - Contact Information (Phone or Email)
+2. Click "Register Patient" to save the record
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Viewing Patients
 
-## Learn More
+- All registered patients are displayed in a table below the registration form
+- Patients are sorted by registration date (newest first)
+- The table is scrollable if there are many records
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Running SQL Queries
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Enter your SQL query in the text area
+2. Click "Run Query" to execute
+3. Results will be displayed in a table below
+4. Example queries:
 
-### Code Splitting
+   ```sql
+   -- Get all patients
+   SELECT * FROM patients;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   -- Search by name
+   SELECT * FROM patients WHERE name LIKE '%John%';
 
-### Analyzing the Bundle Size
+   -- Get patients by gender
+   SELECT * FROM patients WHERE gender = 'Female';
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Multi-tab Support
 
-### Making a Progressive Web App
+- The application automatically synchronizes data across multiple tabs
+- When you register a patient in one tab, all other tabs will update automatically
+- Data persists even after closing and reopening the browser
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Development Challenges and Solutions
 
-### Advanced Configuration
+1. **Data Persistence**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   - Challenge: Ensuring data survives page refreshes
+   - Solution: Using PGlite with IndexedDB backend for persistent storage
 
-### Deployment
+2. **Cross-tab Synchronization**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+   - Challenge: Keeping data in sync across multiple tabs
+   - Solution: Implemented BroadcastChannel API for real-time updates
 
-### `npm run build` fails to minify
+3. **SQL Query Safety**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   - Challenge: Preventing SQL injection in raw queries
+   - Solution: PGlite provides built-in parameterized query support
+
+4. **UI/UX**
+   - Challenge: Creating an intuitive interface for both registration and SQL queries
+   - Solution: Implemented a clean, responsive design with clear sections
+
+## Deployment
+
+The application can be deployed to any static hosting service. For example, using Vercel:
+
+1. Install Vercel CLI:
+
+```bash
+npm install -g vercel
+```
+
+2. Deploy:
+
+```bash
+vercel
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
